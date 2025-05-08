@@ -1,27 +1,18 @@
 package org.scrawl.project
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
@@ -37,14 +28,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import components.Folder
 import components.TransparentTextField
 import components.WordCounter
 import components.generateDummyData
-import kotlinx.coroutines.launch
 
 @Composable
-fun AndroidMain(){
+actual fun MainUI(){
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val folder = generateDummyData()
@@ -66,7 +55,7 @@ fun AndroidMain(){
                         Icon(imageVector = Icons.Outlined.Add, contentDescription = "Add")
                     }
                 }
-                Folder(folder)
+                FolderUI(folder)
             }
         }
     ){
