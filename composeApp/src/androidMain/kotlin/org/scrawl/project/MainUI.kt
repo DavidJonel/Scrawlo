@@ -1,5 +1,6 @@
 package org.scrawl.project
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -32,6 +33,7 @@ import components.TransparentTextField
 import components.WordCounter
 import components.generateDummyData
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 actual fun MainUI(){
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)

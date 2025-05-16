@@ -37,7 +37,6 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(compose.material3)
             implementation(compose.materialIconsExtended)
-            implementation(libs.sqlite.bundled)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

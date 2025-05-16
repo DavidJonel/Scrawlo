@@ -29,22 +29,18 @@ actual fun FolderUI(folderItem: Item.FolderItem){
     var expanded by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(4.dp)) {
-        TextButton(onClick = { expanded = !expanded }) {
-            Icon(
-                imageVector = if (expanded) Icons.Filled.FolderOpen else Icons.Filled.Folder,
-                contentDescription = null
-            )
-            Spacer(modifier = Modifier.padding(4.dp))
-            Text(folderItem.name)
-        }
-        if(expanded){
-            TextButton(onClick = { }) {
+        ContextMenuArea(items = ({
+            listOf(ContextMenuItem("Add new script"){
+
+            })
+        })){
+            TextButton(onClick = { expanded = !expanded }) {
                 Icon(
-                    imageVector = Icons.Default.Add,
+                    imageVector = if (expanded) Icons.Filled.FolderOpen else Icons.Filled.Folder,
                     contentDescription = null
                 )
-                Spacer(modifier = Modifier.padding(2.dp))
-                Text("Add Script")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(folderItem.name)
             }
         }
     }
