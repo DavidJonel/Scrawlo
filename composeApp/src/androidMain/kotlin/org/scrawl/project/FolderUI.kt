@@ -40,20 +40,14 @@ actual fun FolderUI(folderItem: Item.FolderItem) {
         TextButton(onClick = { expanded = !expanded }) {
             Icon(
                 imageVector = if (expanded) Icons.Filled.FolderOpen else Icons.Filled.Folder,
+                tint = MaterialTheme.colorScheme.onPrimary,
                 contentDescription = null
             )
             Spacer(modifier = Modifier.padding(4.dp))
-            Text(folderItem.name)
-        }
-        if(expanded){
-            TextButton(onClick = { }) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = null
-                )
-                Spacer(modifier = Modifier.padding(2.dp))
-                Text("Add Script")
-            }
+            Text(
+                text = folderItem.name,
+                color = MaterialTheme.colorScheme.onPrimary
+            )
         }
     }
 
@@ -80,11 +74,14 @@ actual fun FolderUI(folderItem: Item.FolderItem) {
                                 Icon(
                                     modifier = Modifier.size(16.dp),
                                     imageVector = Icons.Default.Description,
-                                    tint = MaterialTheme.colorScheme.primary,
+                                    tint = MaterialTheme.colorScheme.onPrimary,
                                     contentDescription = null
                                 )
                                 Spacer(modifier = Modifier.padding(4.dp))
-                                Text(text = child.name, color = MaterialTheme.colorScheme.primary)
+                                Text(
+                                    text = child.name,
+                                    color = MaterialTheme.colorScheme.onPrimary
+                                )
                                 DropdownMenu(
                                     expanded = (showContextMenu == child),
                                     onDismissRequest = {showContextMenu = null}

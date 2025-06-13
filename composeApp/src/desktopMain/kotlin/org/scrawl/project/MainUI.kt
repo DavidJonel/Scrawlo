@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Icon
@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import components.TransparentTextField
 import components.WordCounter
 import components.generateDummyData
+import androidx.compose.ui.text.font.FontWeight
 
 @Composable
 actual fun MainUI(){
@@ -41,7 +42,7 @@ actual fun MainUI(){
 
         LazyColumn(
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.surfaceContainer)
+                .background(MaterialTheme.colorScheme.primary)
                 .padding(8.dp)
                 .fillMaxHeight()
                 .weight(0.25f)
@@ -52,9 +53,18 @@ actual fun MainUI(){
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Projects")
+                   Text(
+                       text = "Projects",
+                       modifier = Modifier.padding(16.dp),
+                       color = MaterialTheme.colorScheme.onPrimary,
+                       fontSize = 34.sp,
+                       fontWeight = FontWeight.Bold,
+                   )
                     IconButton(onClick = {}) {
-                        Icon(imageVector = Icons.Outlined.Add, contentDescription = "Add")
+                        Icon(
+                            imageVector = Icons.Outlined.Add,
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            contentDescription = "Add")
                     }
                 }
                 FolderUI(folder)

@@ -14,9 +14,11 @@ import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,6 +28,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,7 +47,9 @@ actual fun MainUI(){
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet {
+            ModalDrawerSheet(
+                drawerContainerColor = MaterialTheme.colorScheme.primary
+            ) {
                 Row(
                     modifier = Modifier
                         .padding(12.dp)
@@ -52,9 +57,19 @@ actual fun MainUI(){
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Projects")
+                    Text(
+                        text = "Projects",
+                        modifier = Modifier.padding(16.dp),
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        fontSize = 28.sp
+                    )
                     IconButton(onClick = { /* Handle add folder */ }) {
-                        Icon(imageVector = Icons.Outlined.Add, contentDescription = "Add")
+                        Icon(
+                            imageVector = Icons.Outlined.Add,
+                            tint = MaterialTheme.colorScheme.onPrimary,
+                            contentDescription = "Add"
+                        )
                     }
                 }
                 FolderUI(folder)
@@ -62,26 +77,30 @@ actual fun MainUI(){
         }
     ){
         Scaffold{
-            Box(modifier = Modifier.fillMaxSize()) {
-                Row(modifier = Modifier.padding(24.dp)) {
-                    TransparentTextField(
-                        "",
-                        textValue = text.text,
-                        onValueChange = { NewBody -> text = NewBody },
-                        labelSize = 14.sp,
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxHeight()
-                    )
-                    Text(
-                        text = "${WordCounter(text.text)}",
-                        modifier = Modifier
-                            .align(Alignment.Bottom)
-                            .padding(start = 8.dp),
-                        fontSize = 14.sp
-                    )
+            Surface {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Row(modifier = Modifier.padding(24.dp)) {
+                        TransparentTextField(
+                            "",
+                            textValue = text.text,
+                            onValueChange = { NewBody -> text = NewBody },
+                            labelSize = 14.sp,
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxHeight()
+                        )
+
+                        Text(
+                            text = "${WordCounter(text.text)}",
+                            modifier = Modifier
+                                .align(Alignment.Bottom)
+                                .padding(start = 8.dp),
+                            fontSize = 14.sp
+                        )
+                    }
                 }
             }
+
         }
     }
 }

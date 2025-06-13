@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.FolderOpen
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,10 +38,14 @@ actual fun FolderUI(folderItem: Item.FolderItem){
             TextButton(onClick = { expanded = !expanded }) {
                 Icon(
                     imageVector = if (expanded) Icons.Filled.FolderOpen else Icons.Filled.Folder,
+                    tint = MaterialTheme.colorScheme.onPrimary,
                     contentDescription = null
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
-                Text(folderItem.name)
+                Text(
+                    text = folderItem.name,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
             }
         }
     }
@@ -62,10 +67,14 @@ actual fun FolderUI(folderItem: Item.FolderItem){
                                 Icon(
                                     modifier = Modifier.size(16.dp),
                                     imageVector = Icons.Default.Description,
+                                    tint = MaterialTheme.colorScheme.onPrimary,
                                     contentDescription = null
                                 )
                                 Spacer(modifier = Modifier.padding(4.dp))
-                                Text(child.name)
+                                Text(
+                                    text = child.name,
+                                    color = MaterialTheme.colorScheme.onPrimary
+                                )
                             }
                         }
                     }
