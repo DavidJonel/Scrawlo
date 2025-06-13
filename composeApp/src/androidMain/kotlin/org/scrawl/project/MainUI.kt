@@ -24,7 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import components.SearchTextField
 import components.TransparentTextField
 import components.WordCounter
 import components.generateDummyData
@@ -40,9 +40,10 @@ import components.generateDummyData
 @Composable
 actual fun MainUI(){
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
     val folder = generateDummyData()
     var text by remember { mutableStateOf(TextFieldValue("")) }
+   var query by remember { mutableStateOf("") }
+
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -53,16 +54,16 @@ actual fun MainUI(){
                 Row(
                     modifier = Modifier
                         .padding(12.dp)
-                        .fillMaxWidth(0.6f),
+                        .fillMaxWidth(0.9f),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = "Projects",
-                        modifier = Modifier.padding(16.dp),
+                        modifier = Modifier.padding(14.dp),
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onPrimary,
-                        fontSize = 28.sp
+                        fontSize = 30.sp
                     )
                     IconButton(onClick = { /* Handle add folder */ }) {
                         Icon(
@@ -72,6 +73,7 @@ actual fun MainUI(){
                         )
                     }
                 }
+                SearchTextField(query = query, onQueryChange = {query = it})
                 FolderUI(folder)
             }
         }

@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.TextButton
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.FolderOpen
@@ -36,7 +35,7 @@ actual fun FolderUI(folderItem: Item.FolderItem) {
     var expanded by remember { mutableStateOf(false) }
     var showContextMenu by remember { mutableStateOf<Item.File?>(null) }
 
-    Column(modifier = Modifier.padding(4.dp)) {
+    Column(modifier = Modifier.padding(14.dp)) {
         TextButton(onClick = { expanded = !expanded }) {
             Icon(
                 imageVector = if (expanded) Icons.Filled.FolderOpen else Icons.Filled.Folder,

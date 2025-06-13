@@ -29,11 +29,13 @@ import components.TransparentTextField
 import components.WordCounter
 import components.generateDummyData
 import androidx.compose.ui.text.font.FontWeight
+import components.SearchTextField
 
 @Composable
 actual fun MainUI(){
     val folder = generateDummyData() //dum dum
     var text by remember { mutableStateOf(TextFieldValue("")) }
+    var query by remember { mutableStateOf("") }
 
     Row(
         modifier = Modifier.fillMaxSize(),
@@ -67,6 +69,7 @@ actual fun MainUI(){
                             contentDescription = "Add")
                     }
                 }
+                SearchTextField(query = query, onQueryChange = {query = it})
                 FolderUI(folder)
             }
         }
